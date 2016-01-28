@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM debian:jessie
 
 # Install & update base system
 #RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
