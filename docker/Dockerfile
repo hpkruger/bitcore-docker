@@ -1,9 +1,6 @@
 FROM debian:jessie
 
 # Install & update base system
-#RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
-#RUN apt-get update && apt-get install -y software-properties-common
-#RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
 RUN apt-get upgrade -y
 
@@ -27,10 +24,6 @@ RUN cd bitcore && git checkout $BITCORE_VERSION
 # Build bitcore
 RUN . ~/.bashrc && cd bitcore && npm install
 RUN . ~/.bashrc && cd bitcore/bin && ./build
-
 RUN ln -s /.bitcore /root/.bitcore
-# Compile BOP using Maven
-#RUN cd /bop-trezor-server/sources && mvn -Djavax.net.ssl.trustStore=/netlock.truststore package
-#RUN cp /bop-trezor-server/sources/bop-trezor-server/target/bop-trezor-server-$BOP_VERSION-shaded.jar /bop-trezor-server/
 
 CMD . ~/.bashrc && cd /bitcore/bin && ./bitcore-node start >> /logs/bitcore.log
