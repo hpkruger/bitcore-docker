@@ -18,6 +18,9 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.s
 RUN . ~/.bashrc && nvm install $NODE_VERSION &&  nvm alias default v4.2
 RUN . ~/.bashrc && npm install -g node-gyp
 
+# Increase this to skip Docker cache
+ENV BUILD_ATTEMPT 1
+
 # Clone bitcore
 RUN git clone $BITCORE_REPO bitcore
 RUN cd bitcore && git checkout $BITCORE_VERSION
