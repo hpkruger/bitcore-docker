@@ -26,7 +26,7 @@ RUN git clone $BITCORE_REPO bitcore
 RUN cd bitcore && git checkout $BITCORE_VERSION
 
 # Build bitcore
-RUN . ~/.bashrc && cd bitcore && npm install
+RUN . ~/.bashrc && cd bitcore && npm install && npm install insight-api
 RUN . ~/.bashrc && cd bitcore/bin && ./build
 RUN ln -s /.bitcore /root/.bitcore
 
