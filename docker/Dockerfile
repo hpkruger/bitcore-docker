@@ -1,33 +1,28 @@
-FROM debian:jessie
+FROM node:4.1.2
+# Add our user and group first to make sure their IDs get assigned consistently
+RUN groupadd -r app && useradd -r -g app app
 
-# Install & update base system
+# Apt Get
 RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get install -y libzmq3-dev build-essential mongodb libkrb5-dev
 
-# Install git and maven
-RUN apt-get install -y git wget python-dev
-RUN apt-get install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
-RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
+# Set User
+ENV user app
+ENV INSIGHT_NETWORK testnet
+COPY . /home/$user/
+WORKDIR /home/$user
+RUN chown $user --recursive .
+RUN chown $user --recursive /home/$user/
+RUN ls -lah /home/app/
+RUN . ~/.bashrc && npm install --unsafe-perm -g bitcore
 
-ENV NODE_VERSION v4.2
-ENV BITCORE_REPO https://github.com/jpochyla/bitcore-node.git
-ENV BITCORE_VERSION block-methods
-
-# Install Node.js
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-RUN . ~/.bashrc && nvm install $NODE_VERSION &&  nvm alias default v4.2
-RUN . ~/.bashrc && npm install -g node-gyp
-
-# Increase this to skip Docker cache
-ENV BUILD_ATTEMPT 1
-
-# Clone bitcore
-RUN git clone $BITCORE_REPO bitcore
-RUN cd bitcore && git checkout $BITCORE_VERSION
+EXPOSE 3001
+EXPOSE 8333
+EXPOSE 6667
 
 # Build bitcore
-RUN . ~/.bashrc && cd bitcore && npm install && npm install insight-api
-RUN . ~/.bashrc && cd bitcore/bin && ./build
-RUN ln -s /.bitcore /root/.bitcore
+RUN . ~/.bashrc && bitcore create bitstream --testnet
 
-CMD . ~/.bashrc && cd /bitcore/bin && ./bitcore-node start >> /logs/bitcore.log
+RUN cd bitstream
+
+RUN . ~/.bashrc && bitcored
