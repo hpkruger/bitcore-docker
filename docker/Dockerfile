@@ -22,5 +22,5 @@ EXPOSE 6667
 
 # Build bitcore
 RUN . ~/.bashrc && bitcore create bitstream --testnet
-
+RUN . ~/.bashrc && cd bitstream && bitcore install insight-api insight-ui
 CMD . ~/.bashrc && cd bitstream && bitcored >> /logs/bitcore.log
