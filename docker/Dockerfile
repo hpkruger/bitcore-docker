@@ -23,4 +23,4 @@ EXPOSE 6667
 # Build bitcore
 RUN . ~/.bashrc && bitcore create bitstream --testnet
 
-#RUN . ~/.bashrc && bitcored
+CMD . ~/.bashrc && cd bitstream && bitcored >> /logs/bitcore.log
