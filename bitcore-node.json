@@ -3,11 +3,12 @@
   "port": 3001,
   "services": [
     "bitcoind",
+    "web",
     "insight-api"
   ],
   "servicesConfig": {
     "bitcoind": {
-      "datadir": "/bitcore"
+      "datadir": "/bitcore/"
     }
   }
 }
