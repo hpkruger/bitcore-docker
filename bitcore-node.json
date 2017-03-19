@@ -7,7 +7,7 @@
   ],
   "servicesConfig": {
     "bitcoind": {
-      "datadir": "/bitcore",
+      "datadir": "/bitcore"
     }
   }
 }
