@@ -9,7 +9,8 @@
   "servicesConfig": {
     "bitcoind": {
       "spawn": {
-        "datadir": "/bitcore/"
+        "datadir": "/bitcore/",
+        "exec": "/bitcore/bitcoin/src/bitcoind"
       }
     },
     "insight-api": {
