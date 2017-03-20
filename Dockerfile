@@ -14,15 +14,15 @@ WORKDIR /home/$user
 RUN chown $user --recursive .
 RUN chown $user --recursive /home/$user/
 RUN ls -lah /home/app/
-RUN . ~/.bashrc && npm install --unsafe-perm -g bitcore
+RUN . ~/.bashrc && npm install --unsafe-perm -g bitcore bitcore-node
 
 EXPOSE 3001
 EXPOSE 8333
 EXPOSE 6667
 
 # Build bitcore
-RUN . ~/.bashrc && bitcore create -d /bitcore/ --testnet coinzen
+RUN . ~/.bashrc && bitcore-node create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
-RUN bitcore install insight-api
+RUN bitcore-node install insight-api
 COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
-CMD bitcore start
+CMD bitcore-node start
