@@ -21,8 +21,6 @@ EXPOSE 8333
 EXPOSE 6667
 
 # Build bitcore
-RUN . ~/.bashrc && bitcore create bitstream --testnet
-
-RUN cd bitstream
-
-RUN . ~/.bashrc && bitcored
+RUN . ~/.bashrc && bitcore create -d /bitcore/ --testnet coinzen
+WORKDIR coinzen
+CMD bitcored
