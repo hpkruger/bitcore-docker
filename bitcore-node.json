@@ -2,9 +2,9 @@
   "network": "testnet",
   "port": 3001,
   "services": [
+    "insight-api",
     "bitcoind",
     "web",
-    "insight-api"
   ],
   "servicesConfig": {
     "bitcoind": {
