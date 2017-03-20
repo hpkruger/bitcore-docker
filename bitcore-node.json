@@ -8,7 +8,9 @@
   ],
   "servicesConfig": {
     "bitcoind": {
-      "datadir": "/bitcore/"
+      "spawn": {
+        "datadir": "/bitcore/",
+      }
     },
     "insight-api": {
       "routePrefix": "api",
