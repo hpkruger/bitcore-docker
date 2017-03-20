@@ -25,4 +25,4 @@ RUN . ~/.bashrc && bitcore create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
 RUN bitcore install insight-api
 COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
-CMD bitcored
+CMD bitcore start
