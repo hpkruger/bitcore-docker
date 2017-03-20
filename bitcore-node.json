@@ -10,7 +10,7 @@
     "bitcoind": {
       "spawn": {
         "datadir": "/bitcore/",
-        "exec": "/bitcore/bitcoin/src/bitcoind"
+        "exec": "/bitcore/.bitcore/bitcoin/src/bitcoind"
       }
     },
     "insight-api": {
