@@ -23,4 +23,5 @@ EXPOSE 6667
 # Build bitcore
 RUN . ~/.bashrc && bitcore create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
+COPY bitcore-node.json /home/$user/bitcore-node.json
 CMD bitcored
