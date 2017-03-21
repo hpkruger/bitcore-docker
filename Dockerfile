@@ -24,5 +24,5 @@ EXPOSE 6667
 RUN . ~/.bashrc && bitcore-node create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
 RUN bitcore-node install insight-api
-COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
+# COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
 CMD bitcore-node start
