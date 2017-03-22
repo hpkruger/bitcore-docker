@@ -23,6 +23,8 @@ EXPOSE 6667
 # Build bitcore
 RUN . ~/.bashrc && bitcore-node create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
+
+# Install services
 RUN git clone https://github.com/timwhite47/cz-bitcore.git
 RUN bitcore-node install insight-api
 RUN bitcore-node install ./cz-bitcore
