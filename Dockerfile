@@ -2,7 +2,7 @@ FROM node:4.1.2
 # Add our user and group first to make sure their IDs get assigned consistently
 RUN groupadd -r app && useradd -r -g app app
 
-# Apt Get
+# Apt Get Dependenceies
 RUN apt-get update
 RUN apt-get install -y libzmq3-dev build-essential mongodb libkrb5-dev git
 
