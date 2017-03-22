@@ -4,7 +4,7 @@ RUN groupadd -r app && useradd -r -g app app
 
 # Apt Get
 RUN apt-get update
-RUN apt-get install -y libzmq3-dev build-essential mongodb libkrb5-dev
+RUN apt-get install -y libzmq3-dev build-essential mongodb libkrb5-dev git
 
 # Set User
 ENV user app
@@ -23,6 +23,8 @@ EXPOSE 6667
 # Build bitcore
 RUN . ~/.bashrc && bitcore-node create -d /bitcore/ --testnet coinzen
 WORKDIR coinzen
+RUN git clone git@github.com:timwhite47/cz-bitcore.git
 RUN bitcore-node install insight-api
+RUN bitcore-node install ./cz-bitcore
 # COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
 CMD bitcore-node start
