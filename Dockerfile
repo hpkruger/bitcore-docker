@@ -32,5 +32,5 @@ WORKDIR coinzen
 RUN git clone https://github.com/timwhite47/cz-bitcore.git
 RUN bitcore-node install insight-api
 RUN bitcore-node install ./cz-bitcore
-# COPY bitcore-node.json /home/$user/coinzen/bitcore-node.json
+
 CMD bitcore-node start
