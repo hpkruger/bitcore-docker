@@ -11,6 +11,7 @@ ENV user app
 ENV INSIGHT_NETWORK testnet
 COPY . /home/$user/
 WORKDIR /home/$user
+
 RUN chown $user --recursive .
 RUN chown $user --recursive /home/$user/
 RUN ls -lah /home/app/
