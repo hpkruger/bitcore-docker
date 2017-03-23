@@ -14,6 +14,8 @@ WORKDIR /home/$user
 RUN chown $user --recursive .
 RUN chown $user --recursive /home/$user/
 RUN ls -lah /home/app/
+
+# Install NPM Dependenceies
 RUN . ~/.bashrc && npm install --unsafe-perm -g bitcore bitcore-node yarn
 
 # Set Ports
